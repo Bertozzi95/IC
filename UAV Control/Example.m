@@ -40,13 +40,6 @@ sendDATA(data, Socket);
  pause(5);
  pauseSim(0, Socket);
  pause(5) % Run sim for 5 seconds
- %% Pause sim
- disp('Pausing simulation');
- pauseSim(1, Socket);
- pause(5);
- disp('Unpausing simulation');
- pauseSim(0, Socket);
- pause(10) % Run sim for 10 seconds
  %% Use DREF to raise landing gear
  disp('Raising gear');
  gearDREF = 'sim/cockpit/switches/gear_handle_status';

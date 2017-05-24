@@ -5,7 +5,7 @@
 % Turn of Dynamics of Flight of Etkins.
 
 function [Controllers, input] = control_6DOF_horizontal(Controllers, desired, actual_state)
-    
+
 %     input = zeros(4,1);
 %     
 %     angles = quaternion_to_Euler(states.x(7:10));

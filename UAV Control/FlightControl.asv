@@ -13,9 +13,6 @@ getDREFs('sim/test/test_float', Socket);
 time1 = getDREFs('sim/time/total_flight_time_sec',Socket);
 time2 = getDREFs('sim/time/total_flight_time_sec',Socket);
 dif = time2-time1;
-%% Get the position of the aircraft into posi vector
-%posi = [Lat,Lon,Alt,Pitch,Roll,Yaw,Gear]
-posi = getPOSI(0,Socket);
 %% Get the control informations
 %ctrl[LatStick,LonStick,Rudder,Throttle,Gear,Flaps]
 %Elevator: ctrl(1)
@@ -34,13 +31,23 @@ angle_ini = [degtorad(posi(5)),degtorad(posi(4))]; %Roll, Pitch em rad
 x_vel_ini = airspeed; % local_vx,local_vy,local_vz ??
 max_control = [1,degtorad(15),degtorad(15),degtorad(20)]; %throttle,aileron,elevator,rudder deflection em rad
 desired = [0,degtorad(0),degtorad(0)]; %Throttle, Roll, Pitch BETA SEMPRE 0
+%Get the position of the aircraft into posi vector
+%posi = [Lat,Lon,Alt,Pitch,Roll,Yaw,Gear]
+posi = getPOSI(0,Socket);
 alt = posi(3);
-%% C 
-%Create ACTUAL_STATE [VEL, ROLL, PITCH, BETA] 
+%% Control through the PIDs 
+%Set the initial state to the controllers
 set_controllers_horizontal(dt, angle_ini, x_vel_ini, alt, max_control, desired);
 for i=0:1000
     %Ler valores atuais
-    %rodar PID
+    
+    beta = getDREFs('sim/flightmodel/position/beta', Socket);
+    beta = degtorad(beta);
+    airspeed = getDREFs('sim/flightmodel/position/true_airspeed', Socket);
+    posi = getPOSI(0,Socket);
+    %Create ACTUAL_STATE [VEL, ROLL, PITCH, BETA]
+    actual_state = [airspeed,posi(5),posi(4),beta];
+    %rodar PID usando control_6DOF_horizontal
     %Escrever pro XP
 end
 %% Exit

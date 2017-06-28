@@ -6,9 +6,9 @@ function Controllers = set_controllers_horizontal(dt, angle_ini, x_vel_ini, alt,
 
     % Pitch PID with system output pitch and input dpitch
     Controllers.PID_Pitch.Dt = dt;
-    Controllers.PID_Pitch.Kp = -1;
-    Controllers.PID_Pitch.Ki = -0.0;
-    Controllers.PID_Pitch.Kd = -0.0;
+    Controllers.PID_Pitch.Kp = 1;
+    Controllers.PID_Pitch.Ki = 0.3;
+    Controllers.PID_Pitch.Kd = 0.0001;
     Controllers.PID_Pitch.Tf = 0;
     Controllers.PID_Pitch.P = 0;
     Controllers.PID_Pitch.D = 0;
@@ -21,9 +21,9 @@ function Controllers = set_controllers_horizontal(dt, angle_ini, x_vel_ini, alt,
 
     % Roll PID with system output roll and input droll
     Controllers.PID_Roll.Dt = dt;
-    Controllers.PID_Roll.Kp = 0.1;
-    Controllers.PID_Roll.Ki = 0;
-    Controllers.PID_Roll.Kd = 0;
+    Controllers.PID_Roll.Kp = 0.5;
+    Controllers.PID_Roll.Ki = 0.03;
+    Controllers.PID_Roll.Kd = 0.0001;
     Controllers.PID_Roll.Tf = 0;
     Controllers.PID_Roll.P = 0;
     Controllers.PID_Roll.D = 0;
@@ -36,8 +36,8 @@ function Controllers = set_controllers_horizontal(dt, angle_ini, x_vel_ini, alt,
 
     % Yaw PID with system output beta and input dbeta
     Controllers.PID_Yaw.Dt = dt;
-    Controllers.PID_Yaw.Kp = 5;
-    Controllers.PID_Yaw.Ki = 0;
+    Controllers.PID_Yaw.Kp = -0.005;
+    Controllers.PID_Yaw.Ki = -0.0;
     Controllers.PID_Yaw.Kd = 0.0;
     Controllers.PID_Yaw.Tf = 0;
     Controllers.PID_Yaw.P = 0;
